@@ -1,4 +1,3 @@
-//import 'package:advicer/application/advicer/advicer_bloc.dart';
 import 'package:advicer/domain/failures/advice_failures.dart';
 import 'package:advicer/domain/usecases/entities/advice_entities.dart';
 import 'package:dartz/dartz.dart';
@@ -11,8 +10,8 @@ class AdvicerUsecases {
   Future<Either<Failure, AdviceEntities>> getAdviceUsecase() async {
     await sleep1();
 
-    //return Left(GeneralFailure());
+    return Left(ServerFailure());
 
-    return Right(AdviceEntities(advice: "example", id: 1));
+    //return Right(AdviceEntities(advice: "example", id: 1));
   }
 }
