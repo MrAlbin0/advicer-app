@@ -1,17 +1,13 @@
 import 'package:advicer/domain/failures/advice_failures.dart';
 import 'package:advicer/domain/usecases/entities/advice_entities.dart';
+import 'package:advicer/domain/usecases/reposetories/advicer_reposetory.dart';
+import 'package:advicer/infrastructure/repositories/advicer_repositorys_impl.dart';
 import 'package:dartz/dartz.dart';
 
 class AdvicerUsecases {
-  Future sleep1() {
-    return Future.delayed(Duration(seconds: 2), () => "0");
-  }
+  final AdvicerReposetory advicerReposetory = AdvicerRepositorysImpl();
 
   Future<Either<Failure, AdviceEntities>> getAdviceUsecase() async {
-    await sleep1();
-
-    return Left(ServerFailure());
-
-    //return Right(AdviceEntities(advice: "example", id: 1));
+    return advicerReposetory.getAdviceFromApi();
   }
 }
