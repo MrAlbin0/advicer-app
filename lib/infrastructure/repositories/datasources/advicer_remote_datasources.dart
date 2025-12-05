@@ -1,4 +1,5 @@
 import 'package:advicer/domain/usecases/entities/advice_entities.dart';
+import 'package:advicer/infrastructure/exceptions/exceptions.dart';
 import 'package:advicer/infrastructure/repositories/models/advicer_models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -16,12 +17,14 @@ class AdvicerRemoteDatasourcesImpl implements AdvicerRemoteDatasources {
   Future<AdviceEntities> getRandomAdviceFromApi() async {
     final response = await client.get(
       Uri.parse("https://api.adviceslip.com/advice"),
-
-      headers: {'Content-Type': 'application/jason'},
     );
 
-    final responsBody = json.decode(response.body);
+    if (response.statusCode != 200) {
+      throw (ServerException());
+    } else {
+      final responsBody = json.decode(response.body);
 
-    return AdvicerModels.fromJson(responsBody["slip"]);
+      return AdvicerModels.fromJson(responsBody["slip"]);
+    }
   }
 }

@@ -8,6 +8,6 @@ class AdvicerUsecases {
   final AdvicerReposetory advicerReposetory = AdvicerRepositorysImpl();
 
   Future<Either<Failure, AdviceEntities>> getAdviceUsecase() async {
-    return advicerReposetory.getAdviceFromApi();
+    return await advicerReposetory.getAdviceFromApi();
   }
 }
