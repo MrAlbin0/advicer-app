@@ -29,12 +29,12 @@ class AdvicerPage extends StatelessWidget {
                   child: BlocBuilder<AdvicerBloc, AdvicerState>(
                     bloc: blocProvider,
                     builder: (context, advicerState) {
-                      if (advicerState.runtimeType is AdvicerInitial) {
+                      if (advicerState is AdvicerInitial) {
                         return Text(
                           "Your Advice is waiting for you!",
                           style: themeData.textTheme.displayLarge,
                         );
-                      } else if (advicerState.runtimeType is AdvicerStateLoading) {
+                      } else if (advicerState is AdvicerStateLoading) {
                         return CircularProgressIndicator(
                           color: themeData.colorScheme.secondary,
                         );

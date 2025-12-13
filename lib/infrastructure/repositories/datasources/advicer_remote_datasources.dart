@@ -11,7 +11,9 @@ abstract class AdvicerRemoteDatasources {
 }
 
 class AdvicerRemoteDatasourcesImpl implements AdvicerRemoteDatasources {
-  final http.Client client = http.Client();
+  final http.Client client;
+
+  AdvicerRemoteDatasourcesImpl({required this.client});
 
   @override
   Future<AdviceEntities> getRandomAdviceFromApi() async {
